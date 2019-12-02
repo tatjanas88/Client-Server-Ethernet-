@@ -1,7 +1,4 @@
 #include <arpa/inet.h>
-#include <asm-generic/errno.h>
-#include <asm-generic/socket.h>
-#include <bits/types/siginfo_t.h>
 #include <cstdio>
 #include <cstdlib>
 #include <dirent.h>
@@ -192,7 +189,8 @@ int main()
     int nizid[4]={0}; 
     int id;
     int pid;
-    fd = shm_open("vga_buffer", O_RDWR,0666);
+//    fd = open("/dev/vga_dma", O_RDWR,0666);
+    fd = open("/dev/vga_dma", O_RDWR | O_NDELAY);
     if (fd < 0)
     {
       printf("Cannot open vga_buffer\n");;
