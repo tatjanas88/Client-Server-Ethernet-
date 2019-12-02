@@ -276,7 +276,7 @@ int main()
           std::string msg;
           do {
             msg = sock_read(newsockfd); //da bi vracali string
-            std::cout<<msg<<std::endl;
+            //std::cout<<msg;
             move_rect(buffer, first_free, msg, &x_off, &y_off);
           } while (msg != "q\n" && msg != "");
           clear_section(buffer, first_free);
@@ -304,11 +304,7 @@ int main()
         int status;
         if (waitpid(nizid[a], &status, WNOHANG)) {
           std::cout << "Client disconnected\n";
-         for (int i = 0; i < 4; i++) {
-            if (nizid[i] == pid) {
-                nizid[i] = 0;         
-            }
-        } 
+          oslobadjanje_kvadranta(nizid, nizid[a]);
           ispisivanje_liste(nizid, 4);
         }
       }
